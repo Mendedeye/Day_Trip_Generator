@@ -16,7 +16,7 @@ def get_user_choice_input():
 #Prints the trip list
 def print_trip_list(selected_list):
     print(selected_list)
-    
+
 #Prints the final trip list 
 def print_final_list(selected_list):
     print(f"You will be going to {selected_list[0]}, eating at {selected_list[1]}, taking a {selected_list[2]}, and attending a {selected_list[3]}!!!")
@@ -50,3 +50,13 @@ def day_trip_generator(destination_list, restaurant_list, transportation_list, e
 
     return trip_list
 
+#Prints the instructions
+def print_instructions():
+    instructions =  """\n\nHello this program will generate a random list and give you the option to re-randomnize
+                        parts of the list that you don't like."""
+    print(instructions)
+
+#Prints goodbye
+def print_goodbye():
+    goodbye = """\n\nGoodbye I hope you have a wonderful day and sorry if it was an expensive trip..."""
+    print(goodbye)
