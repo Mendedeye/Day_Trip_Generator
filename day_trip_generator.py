@@ -17,12 +17,57 @@ def main(destination_list, restaurant_list, transportation_list, entertainment_l
     user_input = get_user_choice_input
 
     while user_input.lower == "n":
-        #user_choice_change = trip_choice_changer
+        user_choice_change = trip_choice_changer
         trip_list = day_trip_rescheduler
         user_input = get_user_choice_input
     
     print_final_list
     print_goodbye
+
+#Prints the instructions
+def print_instructions():
+    instructions =  """\n
+        Hello this program will generate a random list of a destination, 
+        restaurant, method of transportation and entertainment
+        Then it will give you the option to re-randomnize
+        parts of the list that you would like to change."""
+    print(instructions)
+
+#Generates a random trip list with a destination, restaurant, transportation method, and entertainment.
+def day_trip_generator(destination_list, restaurant_list, transportation_list, entertainment_list):
+    trip_list = []
+
+    trip_list.append(list_item_randomnizer(destination_list))
+    trip_list.append(list_item_randomnizer(restaurant_list))
+    trip_list.append(list_item_randomnizer(transportation_list))
+    trip_list.append(list_item_randomnizer(entertainment_list))
+
+    return trip_list
+
+#Takes in a list finds what needs re-randomnized and returns the re-randomnizes list.
+def day_trip_rescheduler(selected_list):
+    rescheduled_list = []
+
+    for item in selected_list:
+        if item.lower == "destination":
+            rescheduled_list.append(list_item_randomnizer(destination_list))
+        elif item.lower == "restaurant":
+            rescheduled_list.append(list_item_randomnizer(restaurant_list))
+        elif item.lower == "transportation":
+            rescheduled_list.append(list_item_randomnizer(transportation_list))
+        elif item.lower == "entertainment":
+            rescheduled_list.append(list_item_randomnizer(entertainment_list))
+
+    return rescheduled_list
+
+#Selects and returns a random item from a list
+def list_item_randomnizer(selected_list):
+    selected_item = random.choice(selected_list)
+    return selected_item
+    
+#Takes in a one string input from user
+def get_user_choice_input():
+    return input("Are you satisfied with your choices (y/n): ")
 
 #get_user_choice_input
 def trip_choice_changer():
@@ -41,14 +86,6 @@ def trip_choice_changer():
     
     return user_decisions
 
-#Selects and returns a random item from a list
-def list_item_randomnizer(selected_list):
-    selected_item = random.choice(selected_list)
-    return selected_item
-#Takes in a one string input from user
-def get_user_choice_input():
-    return input("Are you satisfied with your choices (y/n): ")
-
 #Prints the trip list
 def print_trip_list(selected_list):
     print(selected_list)
@@ -56,42 +93,6 @@ def print_trip_list(selected_list):
 #Prints the final trip list 
 def print_final_list(selected_list):
     print(f"You will be going to {selected_list[0]}, eating at {selected_list[1]}, taking a {selected_list[2]}, and attending a {selected_list[3]}!!!")
-
-#Takes in a list finds what needs re-randomnized and returns the re-randomnizes list.
-def day_trip_rescheduler(selected_list):
-    rescheduled_list = []
-
-    for item in selected_list:
-        if item.lower == "destination":
-            rescheduled_list.append(list_item_randomnizer(destination_list))
-        elif item.lower == "restaurant":
-            rescheduled_list.append(list_item_randomnizer(restaurant_list))
-        elif item.lower == "transportation":
-            rescheduled_list.append(list_item_randomnizer(transportation_list))
-        elif item.lower == "entertainment":
-            rescheduled_list.append(list_item_randomnizer(entertainment_list))
-
-    return rescheduled_list
-
-#Generates a random trip list with a destination, restaurant, transportation method, and entertainment.
-def day_trip_generator(destination_list, restaurant_list, transportation_list, entertainment_list):
-    trip_list = []
-
-    trip_list.append(list_item_randomnizer(destination_list))
-    trip_list.append(list_item_randomnizer(restaurant_list))
-    trip_list.append(list_item_randomnizer(transportation_list))
-    trip_list.append(list_item_randomnizer(entertainment_list))
-
-    return trip_list
-
-#Prints the instructions
-def print_instructions():
-    instructions =  """\n
-        Hello this program will generate a random list of a destination, 
-        restaurant, method of transportation and entertainment
-        Then it will give you the option to re-randomnize
-        parts of the list that you would like to change."""
-    print(instructions)
 
 #Prints goodbye
 def print_goodbye():
