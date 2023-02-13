@@ -1,12 +1,11 @@
 import random
 
-destination_list = ["New York City", "Toranto", "Miami", "London", "Paris", "Moscow", "Death Valley", "Detroit", "Las Vagas", "Mexico City"]
-restaurant_list = ["McDonalds", "Ramsy's Steakhouse", "Crumble Cookies", "Wendies", "Chick-Fil-A", "Sonic", "Cracker Barrel", "Outback"]
-transportation_list = ["Semi-truck", "SUV", "Sports Car", "Boat", "Plane", "Scooter", "Bike", "Train", "Helecopter"]
-entertainment_list = ["Rave", "Classical Ball", "Magician", "Inspirational Speaker Convention", "Football Game", "MMA Fight", "Music Concert"]
-
 #main()
-def run_day_trip_generator(destination_list, restaurant_list, transportation_list, entertainment_list):
+def run_day_trip_generator():
+    destination_list = ["New York City", "Toranto", "Miami", "London", "Paris", "Moscow", "Death Valley", "Detroit", "Las Vagas", "Mexico City"]
+    restaurant_list = ["McDonalds", "Ramsy's Steakhouse", "Crumble Cookies", "Wendies", "Chick-Fil-A", "Sonic", "Cracker Barrel", "Outback"]
+    transportation_list = ["Semi-truck", "SUV", "Sports Car", "Boat", "Plane", "Scooter", "Bike", "Train", "Helecopter"]
+    entertainment_list = ["Rave", "Classical Ball", "Magician", "Inspirational Speaker Convention", "Football Game", "MMA Fight", "Music Concert"]
     trip_list = []
     user_input = ""
     user_choice_change = []
@@ -18,7 +17,8 @@ def run_day_trip_generator(destination_list, restaurant_list, transportation_lis
 
     while user_input == "n":
         user_choice_change = trip_choice_changer()
-        trip_list = day_trip_rescheduler(user_choice_change, trip_list)
+        trip_list = day_trip_rescheduler(user_choice_change, trip_list, 
+        destination_list, restaurant_list, transportation_list, entertainment_list)
         print_trip_list(trip_list)
         user_input = get_user_choice_input()
     
@@ -46,7 +46,7 @@ def day_trip_generator(destination_list, restaurant_list, transportation_list, e
     return trip_list
 
 #Takes in a list finds what needs re-randomnized and returns the re-randomnizes list.
-def day_trip_rescheduler(selected_list, trip_list):
+def day_trip_rescheduler(users_change_list, trip_list, destination_list, restaurant_list, transportation_list, entertainment_list):
     rescheduled_list = []
 
     destination = trip_list.pop(0)
@@ -54,7 +54,7 @@ def day_trip_rescheduler(selected_list, trip_list):
     transportation = trip_list.pop(0)
     entertainment = trip_list.pop(0)
 
-    for item in selected_list:
+    for item in users_change_list:
         if item == "destination":
             destination = list_item_randomnizer(destination_list)
         elif item == "restaurant":
@@ -78,7 +78,7 @@ def list_item_randomnizer(selected_list):
     
 #Takes in a one string input from user
 def get_user_choice_input():
-    user_choice = input("Are you satisfied with your choices (y/n): ")
+    user_choice = input("\nAre you satisfied with your choices (y/n): ")
     return user_choice
 
 #get_user_choice_input
@@ -86,9 +86,9 @@ def trip_choice_changer():
     user_decisions = []
     user_choice = ""
 
-    print("Which options would you like to change?")
-    print("Destination, Restaurant, Entertainment, Transportation ")
-    print("(please press enter after every item and done if that's all you want changed):")
+    print("\nWhich options would you like to change?")
+    print(  "Destination, Restaurant, Entertainment, Transportation ")
+    print(  "(please press enter after every item and done if that's all you want changed):")
 
     user_choice = input()
 
@@ -112,4 +112,4 @@ def print_goodbye():
     print(goodbye)
 
 
-run_day_trip_generator(destination_list, restaurant_list, transportation_list, entertainment_list)
+run_day_trip_generator()
